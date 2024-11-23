@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id          String    @id @default(uuid()) @map("id_pelanggan")
+  name        String    @map("nama") @db.VarChar(255)
+  email       String    @unique @db.VarChar(110)
+  phoneNumber String    @unique @map("phone") @db.VarChar(110)
+  registerAt  DateTime? @default(now()) @map("tgl_registrasi") @db.Timestamp(0)
+  status      Status    @default(ACTIVE)
+  password    String    @db.VarChar(110)
+  Adress      Adress[]
+  Chart       Chart[]
+
+  @@index([email], map: "user_fk_1")
+  @@index([phoneNumber], map: "user_fk_2")
+  @@map("pelanggan")
+}
+
+model Category {
+  id          String    @id @default(uuid()) @map("id_kategori")
+  name        String    @map("nama_kategori")
+  description String    @map("keterangan") @db.Text
+  Product     Product[]
+
+  @@map("kategori")
+}
+
+model Product {
+  id          String  @id @default(uuid()) @map("idproduk")
+  name        String  @map("namaproduk")
+  categoryId  String  @map("idkategori")
+  image       String  @map("gambar")
+  description String  @map("deskripsi")
+  price       Decimal @map("harga") @db.Decimal(20, 0)
+  stock       Int     @map("stok")
+
+  category     Category       @relation(fields: [categoryId], references: [id])
+  ProductOrder ProductOrder[]
+  Chart        Chart[]
+
+  @@map("produk")
+}
+
+model Adress {
+  id          String   @id @default(uuid()) @map("id_alamat")
+  customerId  String   @map("id_pelanggan")
+  name        String   @map("nama")
+  phoneNumber String   @map("nomorhp")
+  description String   @map("detail_alamat")
+  longitude   String
+  latitude    String
+  createdAt   DateTime @default(now()) @map("createdate") @db.Timestamp(0)
+  customer    Customer @relation(fields: [customerId], references: [id])
+  Order       Order[]
+
+  @@index([customerId], map: "address_fk_1")
+  @@map("alamat")
+}
+
+model Order {
+  id              String         @id @default(uuid()) @map("id_order")
+  customerId      String         @map("id_pelanggan")
+  orderDate       DateTime?      @default(now()) @map("tanggal_pemesanan") @db.Timestamp(0)
+  sendDate        DateTime       @map("tanggal_kirim") @db.Timestamp(0)
+  finishDate      DateTime       @map("tanggal_selesai") @db.Timestamp(0)
+  totalPrice      Decimal        @map("total_pembayaran")
+  addressId       String         @map("id_alamat")
+  paymentMethodId String         @map("id_pembayaran")
+  courierId       String         @map("id_pengiriman")
+  adress          Adress         @relation(fields: [addressId], references: [id])
+  paymentMethod   PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
+  courier         Courier        @relation(fields: [courierId], references: [id])
+  ProductOrder    ProductOrder[]
+
+  @@index([addressId], map: "order_fk_1")
+  @@index([paymentMethodId], map: "order_fk_2")
+  @@index([courierId], map: "order_fk_3")
+  @@map("order")
+}
+
+model ProductOrder {
+  id        String  @id @default(uuid()) @map("id_order_produk")
+  orderId   String  @map("id_order")
+  productId String  @map("id_produk")
+  total     Int     @map("jml")
+  price     Decimal @map("harga")
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId], map: "product_order_fk_1")
+  @@index([productId], map: "product_order_fk_2")
+  @@map("order_produk")
+}
+
+model PaymentMethod {
+  id    String  @id @default(uuid()) @map("id_metode_pembayaran")
+  name  String  @map("metode_pembayaran")
+  Order Order[]
+
+  @@map("metode_pembayaran")
+}
+
+model Courier {
+  id        String  @id @default(uuid()) @map("id_kurir")
+  name      String  @map("nama_kurir")
+  estimated String  @map("estimasi_pengiriman")
+  Order     Order[]
+
+  @@map("kurir")
+}
+
+model Chart {
+  id         String @id @default(uuid())
+  customerId String @map("id_pelanggan")
+  productId  String @map("id_produk")
+
+  customer Customer @relation(fields: [customerId], references: [id])
+  product  Product  @relation(fields: [productId], references: [id])
+
+  @@index([customerId], map: "chart_fk_1")
+  @@index([productId], map: "chart_fk_2")
+  @@map("keranjang")
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESS
+  FINISHED
+}
