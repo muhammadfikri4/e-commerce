@@ -4,9 +4,6 @@ export const MESSAGES = {
       ACCOUNT: "User created successfully",
       INITIAL: "Initial user created successfully",
     },
-    ROLE: "Role created successfully",
-    DEPARTMENT: "Department created successfully",
-    BUDGET: "Budget created successfully",
     CUSTOMER: "Customer created successfully",
   },
   ERROR: {
@@ -87,6 +84,7 @@ export const MESSAGES = {
       DELETE: "Success to delete user",
       LOGIN: "Success to login",
       LOGOUT: "Success to logout",
+      REGISTER: "Success to register",
     },
     PROFILE: {
       GET: "Success to get profile",

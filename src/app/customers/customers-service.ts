@@ -1,8 +1,8 @@
-import { ErrorApp } from "utils/HttpError";
+import { ErrorApp } from "../../utils/HttpError";
 import { CustomerDAO } from "./customers-dao";
 import * as customersRepository from "./customers-repository";
-import { MESSAGE_CODE } from "utils/ErrorCode";
-import { MESSAGES } from "utils/Messages";
+import { MESSAGE_CODE } from "../../utils/ErrorCode";
+import { MESSAGES } from "../../utils/Messages";
 import * as bcrypt from "bcrypt";
 
 export const createCustomer = async (data: CustomerDAO) => {

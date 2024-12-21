@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import * as customerService from "./customers-service";
 import { ErrorApp } from "../../utils/HttpError";
-import { HandleResponse } from "utils/HandleResponse";
+import { HandleResponse } from "../../utils/HandleResponse";
 import { MESSAGES } from "../../utils/Messages";
 import { MESSAGE_CODE } from "../../utils/ErrorCode";
 

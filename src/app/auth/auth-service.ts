@@ -4,6 +4,8 @@ import { MESSAGE_CODE } from "../../utils/ErrorCode";
 import { MESSAGES } from "../../utils/Messages";
 import * as bcrypt from "bcrypt";
 import { CustomerDAO } from "../customers/customers-dao";
+import { LoginDAO } from "./auth-dao";
+import { GenerateToken } from "../../utils/GenerateToken";
 
 export const register = async (data: CustomerDAO) => {
   const existEmail = await customersRepository.getCustomerByEmail(data.email);
@@ -11,18 +13,18 @@ export const register = async (data: CustomerDAO) => {
     return new ErrorApp(
       MESSAGE_CODE.BAD_REQUEST,
       400,
-      MESSAGES.ERROR.ALREADY.GLOBAL.EMAIL,
+      MESSAGES.ERROR.ALREADY.GLOBAL.EMAIL
     );
   }
 
   const existPhone = await customersRepository.getCustomerByPhoneNumber(
-    data.phoneNumber,
+    data.phoneNumber
   );
   if (existPhone) {
     return new ErrorApp(
       MESSAGE_CODE.BAD_REQUEST,
       400,
-      MESSAGES.ERROR.ALREADY.GLOBAL.PHONE_NUMBER,
+      MESSAGES.ERROR.ALREADY.GLOBAL.PHONE_NUMBER
     );
   }
 
@@ -34,4 +36,30 @@ export const register = async (data: CustomerDAO) => {
     password,
   });
   return result;
+};
+
+export const login = async (data: LoginDAO) => {
+  const customer = await customersRepository.getCustomerByEmail(data.email);
+
+  if (!customer) {
+    return new ErrorApp(
+      MESSAGE_CODE.BAD_REQUEST,
+      400,
+      MESSAGES.ERROR.NOT_FOUND.USER.ACCOUNT
+    );
+  }
+
+  const isMatch = await bcrypt.compare(data.password, customer.password);
+  if (!isMatch) {
+    return new ErrorApp(
+      MESSAGE_CODE.BAD_REQUEST,
+      400,
+      MESSAGES.ERROR.INVALID.USER.PASSWORD
+    );
+  }
+  const accessToken = await GenerateToken(customer.id);
+
+  return {
+    accessToken,
+  };
 };
