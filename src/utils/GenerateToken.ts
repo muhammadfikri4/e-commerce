@@ -1,10 +1,10 @@
 import Jwt from "jsonwebtoken";
 import { config } from "../libs";
 
-export const GenerateToken = (userId: string) => {
+export const GenerateToken = (customerId: string) => {
   return Jwt.sign(
     {
-      userId,
+      customerId,
     },
     config.JWT_SECRET as string,
     {

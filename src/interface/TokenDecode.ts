@@ -1,3 +1,3 @@
 export interface TokenDecodeInterface {
-    userId: string
+    customerId: string
 }

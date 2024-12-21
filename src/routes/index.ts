@@ -3,11 +3,13 @@ import { MESSAGE_CODE } from "../utils/ErrorCode";
 import { MESSAGES } from "../utils/Messages";
 import { customersRoute } from "../app/customers/customers.route";
 import { authRoute } from "../app/auth/auth-route";
+import { profileRoute } from "../app/profile/profile-route";
 
 const route = Router();
 
 route.use("/customers", customersRoute);
 route.use("/auth", authRoute);
+route.use("/profile", profileRoute);
 
 route.get("/", (_: Request, res: Response) => {
   return res.json({ message: "Hello World 🚀" });

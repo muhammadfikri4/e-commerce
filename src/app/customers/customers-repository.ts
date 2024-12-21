@@ -27,3 +27,11 @@ export const getCustomerByPhoneNumber = async (phoneNumber: string) => {
     },
   });
 };
+
+export const getCustomerById = async (customerId: string) => {
+  return await db.customer.findUnique({
+    where: {
+      id: customerId,
+    },
+  });
+};
