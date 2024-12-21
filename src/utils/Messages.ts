@@ -5,6 +5,7 @@ export const MESSAGES = {
       INITIAL: "Initial user created successfully",
     },
     CUSTOMER: "Customer created successfully",
+    CATEGORY: "Category created successfully",
   },
   ERROR: {
     NOT_FOUND: {
@@ -28,11 +29,7 @@ export const MESSAGES = {
         PHONE_NUMBER: "Phone number is already exist",
       },
       USER: "User already exist",
-      ROLE: "Role is already exist",
-      DEPARTMENT: "Department is already exist",
-      BUDGET_PENDING:
-        "You have a budget that is still pending, please complete it first.",
-      BUDGET: "You have submitted a budget for this year.",
+      CATEGORY: "Category already exist",
     },
     INVALID: {
       GLOBAL: {
@@ -89,11 +86,11 @@ export const MESSAGES = {
     PROFILE: {
       GET: "Success to get profile",
     },
-    DEPARTMENT: {
-      GET: "Success to get department",
-      CREATE: "Success to create department",
-      UPDATE: "Success to update department",
-      DELETE: "Success to delete department",
+    CATEGORY: {
+      GET: "Success to get cateogry",
+      CREATE: "Success to create cateogry",
+      UPDATE: "Success to update cateogry",
+      DELETE: "Success to delete cateogry",
     },
     AUTH: {
       SIGN_IN: "Success to sign in",
