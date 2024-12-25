@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import * as categoryService from "./categories-service";
-import { ErrorApp } from "../../utils/HttpError";
-import { HandleResponse } from "../../utils/HandleResponse";
-import { MESSAGE_CODE } from "../../utils/ErrorCode";
-import { MESSAGES } from "../../utils/Messages";
+import { ErrorApp } from "../../utils/http-error";
+import { HandleResponse } from "../../utils/handle-response";
+import { MESSAGE_CODE } from "../../utils/error-code";
+import { MESSAGES } from "../../utils/messages";
 
 export const createCategory = async (
   req: Request,

@@ -1,9 +1,9 @@
 import { NextFunction, Response } from "express";
 import { RequestWithAccessToken } from "../../interface/Request";
-import { MESSAGE_CODE } from "../../utils/ErrorCode";
-import { HandleResponse } from "../../utils/HandleResponse";
-import { ErrorApp } from "../../utils/HttpError";
-import { MESSAGES } from "../../utils/Messages";
+import { MESSAGE_CODE } from "../../utils/error-code";
+import { HandleResponse } from "../../utils/handle-response";
+import { ErrorApp } from "../../utils/http-error";
+import { MESSAGES } from "../../utils/messages";
 import * as profileService from "./profile-service";
 
 export const getProfile = async (

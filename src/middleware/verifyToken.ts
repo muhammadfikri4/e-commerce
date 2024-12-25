@@ -8,10 +8,10 @@ import {
 } from "jsonwebtoken";
 import { RequestWithAccessToken } from "../interface/Request";
 import { config } from "../libs";
-import { MESSAGE_CODE } from "../utils/ErrorCode";
-import { HandleResponse } from "../utils/HandleResponse";
-import { MESSAGES } from "../utils/Messages";
-import { ErrorApp } from "../utils/HttpError";
+import { MESSAGE_CODE } from "../utils/error-code";
+import { HandleResponse } from "../utils/handle-response";
+import { MESSAGES } from "../utils/messages";
+import { ErrorApp } from "../utils/http-error";
 import * as customersRepository from "../app/customers/customers-repository";
 
 export const VerifyToken = async (
@@ -31,9 +31,6 @@ export const VerifyToken = async (
       );
     }
     const decoded = decode(token) as TokenDecodeInterface;
-    console.log({
-      token,
-    });
     let errno: ErrorApp | undefined;
     verify(token, config.JWT_SECRET as string, (err: unknown) => {
       if (err) {
@@ -62,7 +59,6 @@ export const VerifyToken = async (
       next(errno);
       return;
     }
-    console.log(decode);
     if (!decoded?.customerId) {
       return HandleResponse(
         res,

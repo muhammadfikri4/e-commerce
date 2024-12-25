@@ -1,6 +1,6 @@
 import { db } from "../../config";
 import { Query } from "../../interface/Query";
-import { queryPagination } from "../../utils/Pagination";
+import { queryPagination } from "../../utils/query-pagination";
 import { CategoryDAO } from "./categories-dao";
 
 export const getCategoryByName = async (name: string) => {
@@ -49,6 +49,14 @@ export const getCategoryCount = async (query: Query) => {
         contains: search,
         mode: "insensitive",
       },
+    },
+  });
+};
+
+export const getCategoryById = async (categoryId: string) => {
+  return await db.category.findUnique({
+    where: {
+      id: categoryId,
     },
   });
 };

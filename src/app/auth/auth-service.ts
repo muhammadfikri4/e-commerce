@@ -1,11 +1,11 @@
-import { ErrorApp } from "../../utils/HttpError";
+import { ErrorApp } from "../../utils/http-error";
 import * as customersRepository from "../customers/customers-repository";
-import { MESSAGE_CODE } from "../../utils/ErrorCode";
-import { MESSAGES } from "../../utils/Messages";
+import { MESSAGE_CODE } from "../../utils/error-code";
+import { MESSAGES } from "../../utils/messages";
 import * as bcrypt from "bcrypt";
 import { CustomerDAO } from "../customers/customers-dao";
 import { LoginDAO } from "./auth-dao";
-import { GenerateToken } from "../../utils/GenerateToken";
+import { GenerateToken } from "../../utils/generate-token";
 
 export const register = async (data: CustomerDAO) => {
   const existEmail = await customersRepository.getCustomerByEmail(data.email);

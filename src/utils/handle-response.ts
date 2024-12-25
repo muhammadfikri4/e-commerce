@@ -1,6 +1,6 @@
 import { type Response } from 'express'
 import { MetaResponse } from '../interface/ResponseInterface'
-import { ApiResponse } from './ApiResponse'
+import { ApiResponse } from './api-response'
 
 export function HandleResponse<Res = unknown>(
     res: Response,

@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import * as customerService from "./customers-service";
-import { ErrorApp } from "../../utils/HttpError";
-import { HandleResponse } from "../../utils/HandleResponse";
-import { MESSAGES } from "../../utils/Messages";
-import { MESSAGE_CODE } from "../../utils/ErrorCode";
+import { ErrorApp } from "../../utils/http-error";
+import { HandleResponse } from "../../utils/handle-response";
+import { MESSAGES } from "../../utils/messages";
+import { MESSAGE_CODE } from "../../utils/error-code";
 
 export const createCustomer = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const { body } = req;
   const result = await customerService.createCustomer(body);

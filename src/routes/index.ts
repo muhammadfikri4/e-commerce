@@ -1,11 +1,11 @@
 import { Router, type Request, type Response } from "express";
-import { MESSAGE_CODE } from "../utils/ErrorCode";
-import { MESSAGES } from "../utils/Messages";
+import { MESSAGE_CODE } from "../utils/error-code";
 import { customersRoute } from "../app/customers/customers.route";
 import { authRoute } from "../app/auth/auth-route";
 import { profileRoute } from "../app/profile/profile-route";
 import { categoryRoute } from "../app/categories/categories-route";
 import { VerifyToken } from "../middleware/verifyToken";
+import { MESSAGES } from "../utils/messages";
 
 const route = Router();
 
@@ -13,6 +13,7 @@ route.use("/customers", customersRoute);
 route.use("/auth", authRoute);
 route.use("/profile", VerifyToken, profileRoute);
 route.use("/category", VerifyToken, categoryRoute);
+route.use;
 
 route.get("/", (_: Request, res: Response) => {
   return res.json({ message: "Hello World 🚀" });

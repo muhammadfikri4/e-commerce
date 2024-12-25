@@ -5,7 +5,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { config } from "./libs";
 import routes from "./routes";
-import { HandlingError } from "./utils/HandlingError";
+import { HandlingError } from "./utils/handling-error";
 
 const app = express();
 

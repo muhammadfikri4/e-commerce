@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { ErrorApp } from "../../utils/HttpError";
-import { HandleResponse } from "../../utils/HandleResponse";
-import { MESSAGES } from "../../utils/Messages";
-import { MESSAGE_CODE } from "../../utils/ErrorCode";
+import { ErrorApp } from "../../utils/http-error";
+import { HandleResponse } from "../../utils/handle-response";
+import { MESSAGES } from "../../utils/messages";
+import { MESSAGE_CODE } from "../../utils/error-code";
 import * as authService from "./auth-service";
 
 export const register = async (
@@ -37,5 +37,11 @@ export const login = async (
     next(result);
     return;
   }
-  HandleResponse(res, 200, MESSAGE_CODE.SUCCESS, MESSAGES.SUCCESS.USER.LOGIN, result);
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.USER.LOGIN,
+    result
+  );
 };

@@ -6,6 +6,7 @@ export const MESSAGES = {
     },
     CUSTOMER: "Customer created successfully",
     CATEGORY: "Category created successfully",
+    PRODUCT: "Product created successfully",
   },
   ERROR: {
     NOT_FOUND: {
@@ -21,6 +22,7 @@ export const MESSAGES = {
       ROLE: "Role not found",
       DEPARTMENT: "Department not found",
       ROUTE: "Route not found, check again your endpoint",
+      CATEGORY: "Category not found",
     },
     ALREADY: {
       GLOBAL: {
@@ -30,6 +32,7 @@ export const MESSAGES = {
       },
       USER: "User already exist",
       CATEGORY: "Category already exist",
+      PRODUCT: "Product already exist",
     },
     INVALID: {
       GLOBAL: {

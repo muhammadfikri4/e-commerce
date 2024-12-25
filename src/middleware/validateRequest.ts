@@ -1,23 +1,22 @@
-import { NextFunction, type Request, type Response } from 'express';
+import { NextFunction, type Request, type Response } from "express";
 import Joi from "joi";
-import { MESSAGE_CODE } from "../utils/ErrorCode";
-import { HandleResponse } from "../utils/HandleResponse";
+import { MESSAGE_CODE } from "../utils/error-code";
+import { HandleResponse } from "../utils/handle-response";
 
 export const validateRequest = (body: Joi.ObjectSchema) => {
-    return (req: Request, res: Response, next: NextFunction) => {
-        const bv = body.validate(req.body, { abortEarly: false });
+  return (req: Request, res: Response, next: NextFunction) => {
+    const bv = body.validate(req.body, { abortEarly: false });
 
-        const errors = []
+    const errors = [];
 
-        if (bv.error) {
-            errors.push(...bv.error.details.map(i => i.message.replace(/"/g, '')))
-        }
+    if (bv.error) {
+      errors.push(...bv.error.details.map((i) => i.message.replace(/"/g, "")));
+    }
 
-        if (errors.length) {
+    if (errors.length) {
+      return HandleResponse(res, 400, MESSAGE_CODE.BAD_REQUEST, errors[0]);
+    }
 
-            return HandleResponse(res, 400, MESSAGE_CODE.BAD_REQUEST, errors[0]);
-        }
-
-        next();
-    };
+    next();
+  };
 };
