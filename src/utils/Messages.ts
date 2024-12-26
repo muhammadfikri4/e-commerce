@@ -20,8 +20,7 @@ export const MESSAGES = {
         ID: "Angkatan ID not found",
         NAME: "Angkatan not found",
       },
-      ROLE: "Role not found",
-      DEPARTMENT: "Department not found",
+      PAYMENT_METHOD: "Payment method not found",
       ROUTE: "Route not found, check again your endpoint",
       CATEGORY: "Category not found",
       PRODUCT: "Product not found",
@@ -55,6 +54,9 @@ export const MESSAGES = {
       FILE_TYPE: "File type must be png, jpg, jpeg",
       UPLOAD_FILE: "Failed to upload file",
       DOUBLE_PRIMARY_ADDRESS: `Can't add double primary address`,
+      ORDER_COURIER: `Can't create order without courier`,
+      DUPLICATE_ORDER_PRODUCT: `Can't use same product more than once`,
+      ORDER_ADDRESS: 'This address is not yours',
     },
     UNAUTHORIZED: {
       AUTH: "If you are not logged in, please log in first",
@@ -132,6 +134,12 @@ export const MESSAGES = {
       CREATE: "Success to create courier",
       UPDATE: "Success to update courier",
       DELETE: "Success to delete courier",
+    },
+    ORDER: {
+      GET: "Success to get order",
+      CREATE: "Success to create order",
+      UPDATE: "Success to update order",
+      DELETE: "Success to delete order",
     }
   },
 };

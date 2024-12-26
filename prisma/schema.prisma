@@ -71,7 +71,7 @@ model Order {
   orderDate       DateTime?      @default(now()) @map("tanggal_pemesanan") @db.Timestamp(0)
   sendDate        DateTime       @map("tanggal_kirim") @db.Timestamp(0)
   finishDate      DateTime       @map("tanggal_selesai") @db.Timestamp(0)
-  totalPrice      Decimal        @map("total_pembayaran")
+  // totalPrice      Decimal        @map("total_pembayaran")
   addressId       String         @map("id_alamat")
   paymentMethodId String         @map("id_pembayaran")
   courierId       String         @map("id_pengiriman")

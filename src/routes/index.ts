@@ -11,6 +11,7 @@ import { chartRoute } from "../app/chart/chart-route";
 import { paymentMethodRoute } from "../app/payment-method/payment-method-route";
 import { addressRoute } from "../app/address/address-route";
 import { courierRoute } from "../app/courier/courier-route";
+import { orderRoute } from "../app/orders/orders-route";
 
 const route = Router();
 
@@ -23,6 +24,7 @@ route.use("/chart", verifyToken, chartRoute);
 route.use("/payment-method", verifyToken, paymentMethodRoute);
 route.use("/address", verifyToken, addressRoute);
 route.use("/courier", verifyToken, courierRoute);
+route.use("/orders", verifyToken, orderRoute);
 
 route.get("/", (_: Request, res: Response) => {
   return res.json({ message: "Hello World 🚀" });

@@ -16,7 +16,6 @@ export interface OrderRepositoryProps {
     estimated: string
     addressId: string
     paymentMethodId: string
-    totalPrice: number
     courierId: string
     products: ProductList[]
 }

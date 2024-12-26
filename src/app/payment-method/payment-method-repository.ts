@@ -28,3 +28,11 @@ export const getPaymentMethodByName = async (name: string) => {
     },
   });
 };
+
+export const getPaymentMethodById = async (paymentMethodId: string) => {
+  return await db.paymentMethod.findUnique({
+    where: {
+      id: paymentMethodId,
+    },
+  });
+};

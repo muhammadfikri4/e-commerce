@@ -9,7 +9,6 @@ export const createOrder = async (data: OrderRepositoryProps) => {
       orderDate: new Date(),
       sendDate: data.sendDate,
       finishDate: new Date(getEstimated(data.estimated)),
-      totalPrice: Number(data.totalPrice),
       addressId: data.addressId,
       paymentMethodId: data.paymentMethodId,
       courierId: data.courierId,

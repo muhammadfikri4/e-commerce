@@ -10,8 +10,8 @@ export const createCourier = async (data: CourierDAO) => {
   });
 };
 
-export const getCourier = async (query: Query) => {
-  const { search } = query;
+export const getCourier = async (query?: Query) => {
+  const { search } = query ?? {};
   return await db.courier.findMany({
     where: {
       name: {
