@@ -11,7 +11,7 @@ export const createChart = async (data: ChartDAO) => {
   });
 };
 
-export const getChartByCustomerId = async (customerId: string) => {
+export const getChartsByCustomerId = async (customerId: string) => {
   return await db.chart.findMany({
     where: {
       customerId,
@@ -22,6 +22,37 @@ export const getChartByCustomerId = async (customerId: string) => {
           category: true,
         },
       },
+    },
+  });
+};
+
+export const getChartProduct = async (data: Omit<ChartDAO, "count">) => {
+  return await db.chart.findFirst({
+    where: {
+      customerId: data.customerId,
+      productId: data.productId,
+    },
+    include: {
+      product: {
+        include: {
+          category: true,
+        },
+      },
+    },
+  });
+};
+
+export const updateChartIncreaseCount = async (chartId: string, data: Partial<ChartDAO>) => {
+  return await db.chart.update({
+    where: {
+      id: chartId,
+    },
+    data: {
+      count: {
+        increment: data.count
+      },
+      productId: data.productId,
+      customerId: data.customerId,
     },
   });
 };

@@ -17,6 +17,23 @@ export const createChart = async (data: ChartDAO) => {
     );
   }
 
+  const chartProduct = await chartRepository.getChartProduct({
+    customerId: data.customerId,
+    productId: data.productId,
+  });
+
+  if (chartProduct) {
+    const result = await chartRepository.updateChartIncreaseCount(
+      chartProduct.id,
+      {
+        count: data.count,
+        customerId: data.customerId,
+        productId: data.productId,
+      }
+    );
+    return result;
+  }
+
   const result = await chartRepository.createChart({
     customerId: data.customerId,
     productId: data.productId,
@@ -27,7 +44,7 @@ export const createChart = async (data: ChartDAO) => {
 };
 
 export const getChart = async (customerId: string) => {
-  const result = await chartRepository.getChartByCustomerId(customerId);
+  const result = await chartRepository.getChartsByCustomerId(customerId);
   const data = getChartDTOMapper(result);
   return data;
 };

@@ -34,6 +34,7 @@ export const MESSAGES = {
       USER: "User already exist",
       CATEGORY: "Category already exist",
       PRODUCT: "Product already exist",
+      PAYMENT_METHOD: "Payment method already exist",
     },
     INVALID: {
       GLOBAL: {
@@ -110,6 +111,12 @@ export const MESSAGES = {
       UPDATE: "Success to update chart",
       DELETE: "Success to delete chart",
       ADD: "Success add to chart",
+    },
+    PAYMENT_METHOD: {
+      GET: "Success to get payment method",
+      CREATE: "Success to create payment method",
+      UPDATE: "Success to update payment method",
+      DELETE: "Success to delete payment method",
     }
   },
 };
