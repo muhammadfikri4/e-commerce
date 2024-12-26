@@ -97,5 +97,11 @@ export const MESSAGES = {
     AUTH: {
       SIGN_IN: "Success to sign in",
     },
+    PRODUCT: {
+      GET: "Success to get product",
+      CREATE: "Success to create product",
+      UPDATE: "Success to update product",
+      DELETE: "Success to delete product",
+    }
   },
 };

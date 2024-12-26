@@ -11,6 +11,9 @@ import {
   UploadFileToStorage,
 } from "../../utils/upload-file-storage";
 import { config } from "../../libs";
+import { Query } from "../../interface/Query";
+import { Meta } from "../../utils/meta";
+import { getProductsDTOMapper } from "./products-mapper";
 
 export const createProduct = async (data: ProductDAO) => {
   let fileName;
@@ -32,7 +35,6 @@ export const createProduct = async (data: ProductDAO) => {
       );
     }
     const img = data.image as Express.Multer.File;
-    // const filename = `${img?.originalname.replace(FileType[img.mimetype], "")} - ${+new Date()}${FileType[img?.mimetype as string]}`;
     fileName = `${img?.originalname.replace(FileType[img.mimetype], "")} - ${+new Date()}.webp`;
     const quality =
       ((img as unknown as Express.Multer.File)?.size as number) >
@@ -65,4 +67,17 @@ export const createProduct = async (data: ProductDAO) => {
       MESSAGES.ERROR.INVALID.UPLOAD_FILE
     );
   }
+};
+
+export const getProducts = async (query: Query) => {
+  const { page = "1", perPage = "10" } = query;
+  const [products, totalData] = await Promise.all([
+    productsRepository.getProducts(query),
+    productsRepository.getProductsCount(query),
+  ]);
+  const meta = Meta(Number(page), Number(perPage), Number(totalData));
+  return {
+    data: getProductsDTOMapper(products),
+    meta,
+  };
 };

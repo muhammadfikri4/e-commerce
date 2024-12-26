@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProduct } from "./products-controller";
+import { createProduct, getProducts } from "./products-controller";
 import { CatchWrapper } from "../../utils/catch-wrapper";
 import { upload } from "../../utils/upload-file-storage";
 
@@ -10,3 +10,5 @@ productRoute.post(
   CatchWrapper(upload.single("image")),
   CatchWrapper(createProduct)
 );
+
+productRoute.get("/", CatchWrapper(getProducts));

@@ -5,6 +5,5 @@ export interface Query {
     perPage?: string
     search?: string
     status?: Status
-    sortBy?: string
-    year?: string
+    categoryId?: string
 }

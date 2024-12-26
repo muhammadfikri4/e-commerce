@@ -37,3 +37,24 @@ export const createProduct = async (
   }
   HandleResponse(res, 201, MESSAGE_CODE.CREATED, MESSAGES.CREATED.PRODUCT);
 };
+
+export const getProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { query } = req;
+  const result = await productService.getProducts(query);
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.PRODUCT.GET,
+    result.data,
+    result.meta
+  );
+};

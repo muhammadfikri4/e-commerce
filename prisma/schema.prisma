@@ -15,8 +15,8 @@ model Customer {
   registerAt  DateTime? @default(now()) @map("tgl_registrasi") @db.Timestamp(0)
   status      Status    @default(ACTIVE)
   password    String    @db.VarChar(110)
-  Adress      Adress[]
-  Chart       Chart[]
+  address      Address[]
+  chart       Chart[]
 
   @@index([email], map: "user_fk_1")
   @@index([phoneNumber], map: "user_fk_2")
@@ -27,7 +27,7 @@ model Category {
   id          String    @id @default(uuid()) @map("id_kategori")
   name        String    @map("nama_kategori")
   description String    @map("keterangan") @db.Text
-  Product     Product[]
+  product     Product[]
 
   @@map("kategori")
 }
@@ -42,13 +42,13 @@ model Product {
   stock       Int     @map("stok")
 
   category     Category       @relation(fields: [categoryId], references: [id])
-  ProductOrder ProductOrder[]
-  Chart        Chart[]
+  productOrder ProductOrder[]
+  chart        Chart[]
 
   @@map("produk")
 }
 
-model Adress {
+model Address {
   id          String   @id @default(uuid()) @map("id_alamat")
   customerId  String   @map("id_pelanggan")
   name        String   @map("nama")
@@ -58,7 +58,7 @@ model Adress {
   latitude    String
   createdAt   DateTime @default(now()) @map("createdate") @db.Timestamp(0)
   customer    Customer @relation(fields: [customerId], references: [id])
-  Order       Order[]
+  order       Order[]
 
   @@index([customerId], map: "address_fk_1")
   @@map("alamat")
@@ -74,10 +74,10 @@ model Order {
   addressId       String         @map("id_alamat")
   paymentMethodId String         @map("id_pembayaran")
   courierId       String         @map("id_pengiriman")
-  adress          Adress         @relation(fields: [addressId], references: [id])
+  adress          Address         @relation(fields: [addressId], references: [id])
   paymentMethod   PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
   courier         Courier        @relation(fields: [courierId], references: [id])
-  ProductOrder    ProductOrder[]
+  productOrder    ProductOrder[]
 
   @@index([addressId], map: "order_fk_1")
   @@index([paymentMethodId], map: "order_fk_2")
@@ -111,7 +111,7 @@ model Courier {
   id        String  @id @default(uuid()) @map("id_kurir")
   name      String  @map("nama_kurir")
   estimated String  @map("estimasi_pengiriman")
-  Order     Order[]
+  order     Order[]
 
   @@map("kurir")
 }
