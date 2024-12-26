@@ -8,6 +8,7 @@ import { MESSAGES } from "../../utils/messages";
 import { MESSAGE_CODE } from "../../utils/error-code";
 import { OrderDAO } from "./orders-dao";
 import { Query } from "../../interface/Query";
+import { getOrdersDTOMapper } from "./orders-mapper";
 
 export const createOrder = async (customerId: string, data: OrderDAO) => {
   const address = await addressRepository.getAddressById(data.addressId);
@@ -104,6 +105,8 @@ export const createOrder = async (customerId: string, data: OrderDAO) => {
   return result;
 };
 
-// export const getOrder = async(query: Query) => {
-//   const result = await ordersRepository.getOrder(query);
-// }
+export const getOrders = async (query: Query) => {
+  const result = await ordersRepository.getOrders(query);
+  const data = getOrdersDTOMapper(result);
+  return data;
+};

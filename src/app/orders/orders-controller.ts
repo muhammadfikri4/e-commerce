@@ -19,3 +19,26 @@ export const createOrder = async (
   }
   HandleResponse(res, 200, MESSAGE_CODE.CREATED, MESSAGES.SUCCESS.ORDER.CREATE);
 };
+
+export const getOrders = async (
+  req: RequestWithAccessToken,
+  res: Response,
+  next: NextFunction
+) => {
+  const { query, customerId } = req;
+  const result = await orderService.getOrders({
+    ...query,
+    customerId,
+  });
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.ORDER.GET,
+    result
+  );
+};

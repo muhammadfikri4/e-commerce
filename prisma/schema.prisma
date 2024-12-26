@@ -76,7 +76,8 @@ model Order {
   paymentMethodId String         @map("id_pembayaran")
   courierId       String         @map("id_pengiriman")
   estimated       String         @map("estimasi_pengiriman")
-  adress          Address        @relation(fields: [addressId], references: [id])
+  status          OrderStatus?   @default(PENDING)
+  address          Address        @relation(fields: [addressId], references: [id])
   paymentMethod   PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
   courier         Courier        @relation(fields: [courierId], references: [id])
   productOrder    ProductOrder[]
