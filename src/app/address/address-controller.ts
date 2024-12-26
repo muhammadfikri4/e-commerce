@@ -19,3 +19,26 @@ export const createAddress = async (
   }
   HandleResponse(res, 201, MESSAGE_CODE.CREATED, MESSAGES.CREATED.ADDRESS);
 };
+
+export const getAddressCustomer = async (
+  req: RequestWithAccessToken,
+  res: Response,
+  next: NextFunction
+) => {
+  const { customerId, query } = req;
+  const result = await addressService.getAddressCustomer({
+    ...query,
+    customerId,
+  });
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.ADDRESS.GET,
+    result
+  );
+};

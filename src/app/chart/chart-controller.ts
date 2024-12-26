@@ -28,8 +28,11 @@ export const getChart = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { customerId } = req;
-  const result = await chartService.getChart(customerId ?? "");
+  const { customerId, query } = req;
+  const result = await chartService.getChart({
+    ...query,
+    customerId,
+  });
   if (result instanceof ErrorApp) {
     next(result);
     return;

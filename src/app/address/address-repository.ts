@@ -1,4 +1,5 @@
 import { db } from "../../config";
+import { Query } from "../../interface/Query";
 import { AddressDAO } from "./address-dao";
 
 export const getAddressPrimary = async (customerId: string) => {
@@ -20,6 +21,19 @@ export const createAddress = async (data: AddressDAO) => {
       longitude: data.longitude,
       latitude: data.latitude,
       isPrimary: data.isPrimary,
+    },
+  });
+};
+
+export const getAddressCustomer = async (query: Query) => {
+  const { customerId, search } = query;
+  return await db.address.findMany({
+    where: {
+      customerId,
+      name: {
+        contains: search,
+        mode: "insensitive",
+      },
     },
   });
 };

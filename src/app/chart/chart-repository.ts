@@ -1,4 +1,5 @@
 import { db } from "../../config";
+import { Query } from "../../interface/Query";
 import { ChartDAO } from "./chart-dao";
 
 export const createChart = async (data: ChartDAO) => {
@@ -11,10 +12,33 @@ export const createChart = async (data: ChartDAO) => {
   });
 };
 
-export const getChartsByCustomerId = async (customerId: string) => {
+export const getChartsByCustomerId = async (query: Query) => {
+  const { customerId, search } = query;
   return await db.chart.findMany({
     where: {
-      customerId,
+      OR: [
+        {
+          customerId,
+        },
+        {
+          product: {
+            name: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        },
+        {
+          product: {
+            category: {
+              name: {
+                contains: search,
+                mode: "insensitive",
+              },
+            },
+          },
+        },
+      ],
     },
     include: {
       product: {
@@ -42,14 +66,17 @@ export const getChartProduct = async (data: Omit<ChartDAO, "count">) => {
   });
 };
 
-export const updateChartIncreaseCount = async (chartId: string, data: Partial<ChartDAO>) => {
+export const updateChartIncreaseCount = async (
+  chartId: string,
+  data: Partial<ChartDAO>
+) => {
   return await db.chart.update({
     where: {
       id: chartId,
     },
     data: {
       count: {
-        increment: data.count
+        increment: data.count,
       },
       productId: data.productId,
       customerId: data.customerId,

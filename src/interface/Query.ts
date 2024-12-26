@@ -6,4 +6,5 @@ export interface Query {
     search?: string
     status?: Status
     categoryId?: string
+    customerId?: string
 }

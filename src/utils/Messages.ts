@@ -119,6 +119,12 @@ export const MESSAGES = {
       CREATE: "Success to create payment method",
       UPDATE: "Success to update payment method",
       DELETE: "Success to delete payment method",
+    },
+    ADDRESS: {
+      GET: "Success to get address",
+      CREATE: "Success to create address",
+      UPDATE: "Success to update address",
+      DELETE: "Success to delete address",
     }
   },
 };
