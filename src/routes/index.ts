@@ -9,6 +9,7 @@ import { MESSAGES } from "../utils/messages";
 import { productRoute } from "../app/products/products-route";
 import { chartRoute } from "../app/chart/chart-route";
 import { paymentMethodRoute } from "../app/payment-method/payment-method-route";
+import { addressRoute } from "../app/address/address-route";
 
 const route = Router();
 
@@ -19,6 +20,7 @@ route.use("/category", verifyToken, categoryRoute);
 route.use("/products", verifyToken, productRoute);
 route.use("/chart", verifyToken, chartRoute);
 route.use("/payment-method", verifyToken, paymentMethodRoute);
+route.use("/address", verifyToken, addressRoute);
 
 route.get("/", (_: Request, res: Response) => {
   return res.json({ message: "Hello World 🚀" });

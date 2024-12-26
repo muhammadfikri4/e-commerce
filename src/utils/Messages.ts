@@ -7,6 +7,7 @@ export const MESSAGES = {
     CUSTOMER: "Customer created successfully",
     CATEGORY: "Category created successfully",
     PRODUCT: "Product created successfully",
+    ADDRESS: "Address created successfully",
   },
   ERROR: {
     NOT_FOUND: {
@@ -52,6 +53,7 @@ export const MESSAGES = {
       IMAGE_SIZE: "Image size must be less then 5mb",
       FILE_TYPE: "File type must be png, jpg, jpeg",
       UPLOAD_FILE: "Failed to upload file",
+      DOUBLE_PRIMARY_ADDRESS: `Can't add double primary address`,
     },
     UNAUTHORIZED: {
       AUTH: "If you are not logged in, please log in first",

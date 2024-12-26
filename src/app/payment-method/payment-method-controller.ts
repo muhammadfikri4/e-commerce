@@ -23,3 +23,23 @@ export const createPaymentMethod = async (
     MESSAGES.SUCCESS.PAYMENT_METHOD.CREATE
   );
 };
+
+export const getPaymentMethods = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { query } = req;
+  const result = await paymentMethodService.getPaymentMethods(query);
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.PAYMENT_METHOD.GET,
+    result
+  );
+};

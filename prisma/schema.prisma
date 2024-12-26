@@ -33,9 +33,9 @@ model Category {
 }
 
 model Product {
-  id          String  @id @default(uuid()) @map("idproduk")
-  name        String  @map("namaproduk")
-  categoryId  String  @map("idkategori")
+  id          String  @id @default(uuid()) @map("id_produk")
+  name        String  @map("nama_produk")
+  categoryId  String  @map("id_kategori")
   image       String  @map("gambar")
   description String? @map("deskripsi")
   price       Decimal @map("harga") @db.Decimal(20, 0)
@@ -52,11 +52,12 @@ model Address {
   id          String   @id @default(uuid()) @map("id_alamat")
   customerId  String   @map("id_pelanggan")
   name        String   @map("nama")
-  phoneNumber String   @map("nomorhp")
+  phoneNumber String   @map("nomor_hp")
   description String   @map("detail_alamat")
   longitude   String
   latitude    String
-  createdAt   DateTime @default(now()) @map("createdate") @db.Timestamp(0)
+  isPrimary   Boolean  @map("alamat_utama")
+  createdAt   DateTime? @default(now()) @map("create_date") @db.Timestamp(0)
   customer    Customer @relation(fields: [customerId], references: [id])
   order       Order[]
 
