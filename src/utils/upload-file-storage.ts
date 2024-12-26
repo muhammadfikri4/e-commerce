@@ -20,7 +20,7 @@ export interface FileInterface {
 }
 
 export const BUCKET_FOLDER = {
-  products: "products",
+  products: "product",
 };
 
 export const FileType: Record<string, string> = {
@@ -40,7 +40,6 @@ export const MulterFileFilter = (
   file: Express.Multer.File,
   callBack: FileFilterCallback
 ): void => {
-  console.log(file);
   if (file.mimetype && FileType[file.mimetype]) {
     callBack(null, true);
   } else {

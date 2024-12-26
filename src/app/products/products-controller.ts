@@ -17,6 +17,7 @@ export const createProduct = async (
     ...body,
     image: file,
   };
+  console.log({ combine });
 
   const validate = createProductSchema.validate(combine);
   if (validate.error) {

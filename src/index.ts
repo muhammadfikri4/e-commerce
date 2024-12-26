@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import { config } from "./libs";
 import routes from "./routes";
 import { HandlingError } from "./utils/handling-error";
+import path from "path";
 
 const app = express();
 
@@ -32,17 +33,11 @@ app.use(
         preflightContinue: false,
     }),
 );
-app.use((req, res, next) => {
-    if (["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
-        express.json()(req, res, next);
-    } else {
-        next();
-    }
-});
 
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.json());
+app.use("/assets", express.static(path.join(__dirname, "../src/assets")));
 app.use(routes);
 app.use(HandlingError);
 
