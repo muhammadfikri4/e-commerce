@@ -126,6 +126,12 @@ export const MESSAGES = {
       CREATE: "Success to create address",
       UPDATE: "Success to update address",
       DELETE: "Success to delete address",
+    },
+    COURIER: {
+      GET: "Success to get courier",
+      CREATE: "Success to create courier",
+      UPDATE: "Success to update courier",
+      DELETE: "Success to delete courier",
     }
   },
 };
