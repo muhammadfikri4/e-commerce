@@ -5,10 +5,10 @@ export const createProduct = async (data: ProductDAO) => {
   return await db.product.create({
     data: {
       description: data.description,
-      image: data.image,
+      image: data.image as string,
       name: data.name,
-      price: data.price,
-      stock: data.stock,
+      price: Number(data.price),
+      stock: Number(data.stock),
       categoryId: data.categoryId,
     },
   });

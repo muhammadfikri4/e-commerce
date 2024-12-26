@@ -4,16 +4,17 @@ import { customersRoute } from "../app/customers/customers.route";
 import { authRoute } from "../app/auth/auth-route";
 import { profileRoute } from "../app/profile/profile-route";
 import { categoryRoute } from "../app/categories/categories-route";
-import { VerifyToken } from "../middleware/verifyToken";
+import { verifyToken } from "../middleware/verifyToken";
 import { MESSAGES } from "../utils/messages";
+import { productRoute } from "../app/products/products-route";
 
 const route = Router();
 
 route.use("/customers", customersRoute);
 route.use("/auth", authRoute);
-route.use("/profile", VerifyToken, profileRoute);
-route.use("/category", VerifyToken, categoryRoute);
-route.use;
+route.use("/profile", verifyToken, profileRoute);
+route.use("/category", verifyToken, categoryRoute);
+route.use("/products", verifyToken, productRoute);
 
 route.get("/", (_: Request, res: Response) => {
   return res.json({ message: "Hello World 🚀" });

@@ -47,10 +47,9 @@ export const MESSAGES = {
       TOKEN: "Token is invalid",
       INITIAL: "Initial can only be run 1 time",
       CODE: "Code is invalid",
-      REQUEST_BUDGET: "Only role managers can submit budgets",
-      FAILED_REQUEST: "Failed to create budget",
       IMAGE_SIZE: "Image size must be less then 5mb",
       FILE_TYPE: "File type must be png, jpg, jpeg",
+      UPLOAD_FILE: "Failed to upload file",
     },
     UNAUTHORIZED: {
       AUTH: "If you are not logged in, please log in first",

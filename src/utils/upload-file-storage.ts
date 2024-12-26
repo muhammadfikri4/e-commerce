@@ -20,11 +20,7 @@ export interface FileInterface {
 }
 
 export const BUCKET_FOLDER = {
-  attendance: "attendance",
-  event: "event",
-  business: "business",
-  user: "user",
-  structural: "struktural",
+  products: "products",
 };
 
 export const FileType: Record<string, string> = {

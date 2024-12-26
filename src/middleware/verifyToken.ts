@@ -14,7 +14,7 @@ import { MESSAGES } from "../utils/messages";
 import { ErrorApp } from "../utils/http-error";
 import * as customersRepository from "../app/customers/customers-repository";
 
-export const VerifyToken = async (
+export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction

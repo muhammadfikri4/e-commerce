@@ -37,7 +37,7 @@ model Product {
   name        String  @map("namaproduk")
   categoryId  String  @map("idkategori")
   image       String  @map("gambar")
-  description String  @map("deskripsi")
+  description String?  @map("deskripsi")
   price       Decimal @map("harga") @db.Decimal(20, 0)
   stock       Int     @map("stok")
 
