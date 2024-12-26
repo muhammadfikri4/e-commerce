@@ -4,7 +4,7 @@ import { createCategorySchema } from "./categories-request";
 import { createCategory, getCategories } from "./categories-controller";
 import { CatchWrapper } from "../../utils/catch-wrapper";
 
-const categoryRoute = Router();
+export const categoryRoute = Router();
 
 categoryRoute.post(
   "/",
@@ -12,5 +12,3 @@ categoryRoute.post(
   CatchWrapper(createCategory)
 );
 categoryRoute.get("/", CatchWrapper(getCategories));
-
-export { categoryRoute };

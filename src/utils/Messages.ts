@@ -23,6 +23,7 @@ export const MESSAGES = {
       DEPARTMENT: "Department not found",
       ROUTE: "Route not found, check again your endpoint",
       CATEGORY: "Category not found",
+      PRODUCT: "Product not found",
     },
     ALREADY: {
       GLOBAL: {
@@ -102,6 +103,13 @@ export const MESSAGES = {
       CREATE: "Success to create product",
       UPDATE: "Success to update product",
       DELETE: "Success to delete product",
+    },
+    CHART: {
+      GET: "Success to get chart",
+      CREATE: "Success to create chart",
+      UPDATE: "Success to update chart",
+      DELETE: "Success to delete chart",
+      ADD: "Success add to chart",
     }
   },
 };

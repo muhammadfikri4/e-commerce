@@ -11,7 +11,8 @@ export const HandlingError = (
   next: NextFunction
 ) => {
   // console.log(req, next);
-  console.log(err)
+  JSON.stringify(next);
+  console.log(err, req.body);
   if (err instanceof ErrorApp) {
     return HandleResponse(res, err.statusCode, err.code, err.message);
   }

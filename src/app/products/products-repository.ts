@@ -76,3 +76,11 @@ export const getProductsCount = async (query: Query) => {
     },
   });
 };
+
+export const getProductById = async (productId: string) => {
+  return await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+  });
+};
