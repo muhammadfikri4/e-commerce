@@ -15,7 +15,7 @@ model Customer {
   registerAt  DateTime? @default(now()) @map("tgl_registrasi") @db.Timestamp(0)
   status      Status    @default(ACTIVE)
   password    String    @db.VarChar(110)
-  address      Address[]
+  address     Address[]
   chart       Chart[]
 
   @@index([email], map: "user_fk_1")
@@ -37,7 +37,7 @@ model Product {
   name        String  @map("namaproduk")
   categoryId  String  @map("idkategori")
   image       String  @map("gambar")
-  description String?  @map("deskripsi")
+  description String? @map("deskripsi")
   price       Decimal @map("harga") @db.Decimal(20, 0)
   stock       Int     @map("stok")
 
@@ -74,7 +74,7 @@ model Order {
   addressId       String         @map("id_alamat")
   paymentMethodId String         @map("id_pembayaran")
   courierId       String         @map("id_pengiriman")
-  adress          Address         @relation(fields: [addressId], references: [id])
+  adress          Address        @relation(fields: [addressId], references: [id])
   paymentMethod   PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
   courier         Courier        @relation(fields: [courierId], references: [id])
   productOrder    ProductOrder[]
@@ -120,6 +120,7 @@ model Chart {
   id         String @id @default(uuid())
   customerId String @map("id_pelanggan")
   productId  String @map("id_produk")
+  count      BigInt @map("total")
 
   customer Customer @relation(fields: [customerId], references: [id])
   product  Product  @relation(fields: [productId], references: [id])

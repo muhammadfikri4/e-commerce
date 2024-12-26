@@ -4,6 +4,7 @@ import * as chartRepository from "./chart-repository";
 import { ErrorApp } from "../../utils/http-error";
 import { MESSAGES } from "../../utils/messages";
 import { MESSAGE_CODE } from "../../utils/error-code";
+import { getChartDTOMapper } from "./chart-mapper";
 
 export const createChart = async (data: ChartDAO) => {
   const product = await productRepository.getProductById(data.productId);
@@ -19,7 +20,14 @@ export const createChart = async (data: ChartDAO) => {
   const result = await chartRepository.createChart({
     customerId: data.customerId,
     productId: data.productId,
+    count: data.count,
   });
 
   return result;
+};
+
+export const getChart = async (customerId: string) => {
+  const result = await chartRepository.getChartByCustomerId(customerId);
+  const data = getChartDTOMapper(result);
+  return data;
 };

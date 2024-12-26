@@ -22,3 +22,23 @@ export const createChart = async (
   }
   HandleResponse(res, 201, MESSAGE_CODE.CREATED, MESSAGES.SUCCESS.CHART.ADD);
 };
+
+export const getChart = async (
+  req: RequestWithAccessToken,
+  res: Response,
+  next: NextFunction
+) => {
+  const { customerId } = req;
+  const result = await chartService.getChart(customerId ?? "");
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.CHART.GET,
+    result
+  );
+};

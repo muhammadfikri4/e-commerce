@@ -6,6 +6,7 @@ export const createChart = async (data: ChartDAO) => {
     data: {
       customerId: data.customerId,
       productId: data.productId,
+      count: data.count,
     },
   });
 };
@@ -14,6 +15,13 @@ export const getChartByCustomerId = async (customerId: string) => {
   return await db.chart.findMany({
     where: {
       customerId,
+    },
+    include: {
+      product: {
+        include: {
+          category: true,
+        },
+      },
     },
   });
 };

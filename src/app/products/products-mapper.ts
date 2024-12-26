@@ -3,7 +3,7 @@ import { ProductDTO } from "./products-dto";
 import { filePath } from "../../utils/file-path";
 import { BUCKET_FOLDER } from "../../utils/upload-file-storage";
 
-interface ProductData extends Product {
+export interface ProductData extends Product {
   category: Category;
 }
 
