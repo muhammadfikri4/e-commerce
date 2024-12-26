@@ -49,16 +49,16 @@ model Product {
 }
 
 model Address {
-  id          String   @id @default(uuid()) @map("id_alamat")
-  customerId  String   @map("id_pelanggan")
-  name        String   @map("nama")
-  phoneNumber String   @map("nomor_hp")
-  description String   @map("detail_alamat")
+  id          String    @id @default(uuid()) @map("id_alamat")
+  customerId  String    @map("id_pelanggan")
+  name        String    @map("nama")
+  phoneNumber String    @map("nomor_hp")
+  description String    @map("detail_alamat")
   longitude   String
   latitude    String
-  isPrimary   Boolean  @map("alamat_utama")
+  isPrimary   Boolean   @map("alamat_utama")
   createdAt   DateTime? @default(now()) @map("create_date") @db.Timestamp(0)
-  customer    Customer @relation(fields: [customerId], references: [id])
+  customer    Customer  @relation(fields: [customerId], references: [id])
   order       Order[]
 
   @@index([customerId], map: "address_fk_1")
@@ -75,6 +75,7 @@ model Order {
   addressId       String         @map("id_alamat")
   paymentMethodId String         @map("id_pembayaran")
   courierId       String         @map("id_pengiriman")
+  estimated       String         @map("estimasi_pengiriman")
   adress          Address        @relation(fields: [addressId], references: [id])
   paymentMethod   PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
   courier         Courier        @relation(fields: [courierId], references: [id])
@@ -91,7 +92,6 @@ model ProductOrder {
   orderId   String  @map("id_order")
   productId String  @map("id_produk")
   total     Int     @map("jml")
-  price     Decimal @map("harga")
   order     Order   @relation(fields: [orderId], references: [id])
   product   Product @relation(fields: [productId], references: [id])
 
@@ -109,10 +109,9 @@ model PaymentMethod {
 }
 
 model Courier {
-  id        String  @id @default(uuid()) @map("id_kurir")
-  name      String  @map("nama_kurir")
-  estimated String  @map("estimasi_pengiriman")
-  order     Order[]
+  id    String  @id @default(uuid()) @map("id_kurir")
+  name  String  @map("nama_kurir")
+  order Order[]
 
   @@map("kurir")
 }

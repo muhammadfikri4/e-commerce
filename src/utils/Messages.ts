@@ -25,6 +25,7 @@ export const MESSAGES = {
       ROUTE: "Route not found, check again your endpoint",
       CATEGORY: "Category not found",
       PRODUCT: "Product not found",
+      ADDRESS: "Address not found",
     },
     ALREADY: {
       GLOBAL: {

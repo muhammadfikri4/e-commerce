@@ -37,3 +37,11 @@ export const getAddressCustomer = async (query: Query) => {
     },
   });
 };
+
+export const getAddressById = async (addressId: string) => {
+  return await db.address.findUnique({
+    where: {
+      id: addressId,
+    },
+  });
+};

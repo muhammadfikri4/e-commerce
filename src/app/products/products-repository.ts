@@ -84,3 +84,13 @@ export const getProductById = async (productId: string) => {
     },
   });
 };
+
+export const getProductByIds = async (productIds: string[]) => {
+  return await db.product.findMany({
+    where: {
+      id: {
+        in: productIds,
+      },
+    },
+  });
+};
