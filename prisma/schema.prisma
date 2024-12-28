@@ -17,6 +17,7 @@ model Customer {
   password    String    @db.VarChar(110)
   address     Address[]
   chart       Chart[]
+  Order       Order[]
 
   @@index([email], map: "user_fk_1")
   @@index([phoneNumber], map: "user_fk_2")
@@ -71,13 +72,13 @@ model Order {
   orderDate       DateTime?      @default(now()) @map("tanggal_pemesanan") @db.Timestamp(0)
   sendDate        DateTime       @map("tanggal_kirim") @db.Timestamp(0)
   finishDate      DateTime       @map("tanggal_selesai") @db.Timestamp(0)
-  // totalPrice      Decimal        @map("total_pembayaran")
   addressId       String         @map("id_alamat")
   paymentMethodId String         @map("id_pembayaran")
   courierId       String         @map("id_pengiriman")
   estimated       String         @map("estimasi_pengiriman")
   status          OrderStatus?   @default(PENDING)
-  address          Address        @relation(fields: [addressId], references: [id])
+  address         Address        @relation(fields: [addressId], references: [id])
+  customer        Customer       @relation(fields: [customerId], references: [id])
   paymentMethod   PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
   courier         Courier        @relation(fields: [courierId], references: [id])
   productOrder    ProductOrder[]

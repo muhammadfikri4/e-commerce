@@ -11,3 +11,7 @@ export const createOrderSchema = Joi.object({
   paymentMethodId: Joi.string().required(),
   products: Joi.array().items(productItemSchema).required(),
 });
+
+export const paymentOrderSchema = Joi.object({
+  amount: Joi.number().required(),
+});

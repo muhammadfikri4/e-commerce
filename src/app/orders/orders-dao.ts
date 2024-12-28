@@ -19,3 +19,8 @@ export interface OrderRepositoryProps {
     courierId: string
     products: ProductList[]
 }
+
+export interface PaymentOrderDAO {
+  orderId: string
+  amount: number
+}

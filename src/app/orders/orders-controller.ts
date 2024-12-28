@@ -42,3 +42,48 @@ export const getOrders = async (
     result
   );
 };
+
+export const paymentOrder = async (
+  req: RequestWithAccessToken,
+  res: Response,
+  next: NextFunction
+) => {
+  const { params, customerId, body } = req;
+  const { orderId } = params;
+  const result = await orderService.paymentOrder(customerId || "", {
+    orderId,
+    ...body,
+  });
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.ORDER.PAYMENT
+  );
+};
+
+export const receivedOrder = async (
+  req: RequestWithAccessToken,
+  res: Response,
+  next: NextFunction
+) => {
+  const { params, customerId } = req;
+  const { orderId } = params;
+  const result = await orderService.receiveOrder(customerId || "", {
+    orderId,
+  });
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(
+    res,
+    200,
+    MESSAGE_CODE.SUCCESS,
+    MESSAGES.SUCCESS.ORDER.RECEIVED
+  );
+};

@@ -25,6 +25,7 @@ export const MESSAGES = {
       CATEGORY: "Category not found",
       PRODUCT: "Product not found",
       ADDRESS: "Address not found",
+      ORDER: "Order not found",
     },
     ALREADY: {
       GLOBAL: {
@@ -56,7 +57,9 @@ export const MESSAGES = {
       DOUBLE_PRIMARY_ADDRESS: `Can't add double primary address`,
       ORDER_COURIER: `Can't create order without courier`,
       DUPLICATE_ORDER_PRODUCT: `Can't use same product more than once`,
-      ORDER_ADDRESS: 'This address is not yours',
+      ORDER_ADDRESS: "This address is not yours",
+      AMOUNT: "Your amount is enough",
+      ORDER_STATUS_RECEIVED: "Only status Process can be received",
     },
     UNAUTHORIZED: {
       AUTH: "If you are not logged in, please log in first",
@@ -140,6 +143,8 @@ export const MESSAGES = {
       CREATE: "Success to create order",
       UPDATE: "Success to update order",
       DELETE: "Success to delete order",
-    }
+      PAYMENT: "Success to payment order",
+      RECEIVED: "Success to received order",
+    },
   },
 };

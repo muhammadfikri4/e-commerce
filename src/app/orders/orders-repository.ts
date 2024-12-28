@@ -65,3 +65,32 @@ export const getOrders = async (query: Query) => {
     },
   });
 };
+
+export const updateStatusOrder = async (
+  orderId: string,
+  status: OrderStatus
+) => {
+  return await db.order.update({
+    where: {
+      id: orderId,
+    },
+    data: {
+      status,
+    },
+  });
+};
+
+export const getOrderById = async (orderId: string) => {
+  return await db.order.findUnique({
+    where: {
+      id: orderId,
+    },
+    include: {
+      productOrder: {
+        include: {
+          product: true,
+        },
+      },
+    },
+  });
+};
