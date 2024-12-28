@@ -20,6 +20,24 @@ export const createAddress = async (
   HandleResponse(res, 201, MESSAGE_CODE.CREATED, MESSAGES.CREATED.ADDRESS);
 };
 
+export const updateAddress = async (
+  req: RequestWithAccessToken,
+  res: Response,
+  next: NextFunction
+) => {
+  const { body, customerId, params } = req;
+  const { addressId } = params;
+  const result = await addressService.updateAddress(addressId, {
+    ...body,
+    customerId,
+  });
+  if (result instanceof ErrorApp) {
+    next(result);
+    return;
+  }
+  HandleResponse(res, 201, MESSAGE_CODE.CREATED, MESSAGES.SUCCESS.ADDRESS.UPDATE);
+};
+
 export const getAddressCustomer = async (
   req: RequestWithAccessToken,
   res: Response,

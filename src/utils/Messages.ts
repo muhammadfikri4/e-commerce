@@ -74,7 +74,7 @@ export const MESSAGES = {
       NAME: "Name is required",
       CODE: "Code is required",
       DEPARTMENT: "Department is required",
-      PURPOSE_BUDGET: "Please provide a purpose for your budget",
+      PRIMARY_ADDRESS: "Primary address is required, and can't remove primary address",
     },
     FORBIDDEN: {
       ROLE: "Role can't be access this feature",

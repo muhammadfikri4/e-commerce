@@ -25,6 +25,23 @@ export const createAddress = async (data: AddressDAO) => {
   });
 };
 
+export const updateAddress = async (addresId: string, data: Partial<AddressDAO>) => {
+  return await db.address.update({
+    where: {
+      id: addresId,
+    },
+    data: {
+      customerId: data.customerId,
+      name: data.name,
+      phoneNumber: data.phoneNumber,
+      description: data.description,
+      longitude: data.longitude,
+      latitude: data.latitude,
+      isPrimary: data.isPrimary,
+    },
+  });
+};
+
 export const getAddressCustomer = async (query: Query) => {
   const { customerId, search } = query;
   return await db.address.findMany({
